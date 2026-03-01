@@ -1,0 +1,98 @@
+
+
+        /* Color Palette */
+        :root {
+            --primary: #003d99;        /* Deep Blue */
+            --secondary: #0066cc;      /* Royal Blue */
+            --accent: #FFD700;         /* Gold */
+            --light-accent: #FFC700;   /* Light Gold */
+            --background: #FFFFFF;    /* White */
+            --light-bg: #F5F7FA;      /* Very Light Grey */
+        }
+
+        /* Base Settings */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Custom Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Subtle Texture for Hero */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        }
+        
+        /* Staggered Delay Utilities */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Blob Animation */
+        @keyframes blob {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Watermark Styling */
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: rgba(0, 61, 153, 0.4);
+            font-weight: 500;
+            text-decoration: none;
+            z-index: 10;
+            pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .watermark:hover {
+            color: rgba(0, 61, 153, 0.7);
+            pointer-events: auto;
+        }
+
+        @media (max-width: 768px) {
+            .watermark {
+                bottom: 10px;
+                right: 10px;
+                font-size: 10px;
+            }
+        }
+
