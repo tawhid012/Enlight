@@ -1,6 +1,5 @@
 <html lang="en" class="scroll-smooth">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enlight Coaching Centre Hailakandi | Best Classes 6-10 Tuition | CBSE Coaching</title>
@@ -121,6 +120,59 @@
 </head>
 <body class="bg-white text-gray-600 selection:bg-yellow-300 selection:text-blue-900">
 
+    <!-- Scholarship Notification Banner (Google Ads Style) -->
+    <div id="scholarshipBanner" class="fixed inset-0 z-40 hidden" style="backdrop-filter: blur(3px); background: rgba(0, 0, 0, 0.3);">
+        <div class="absolute inset-0 hidden" id="bannerBackdrop"></div>
+        
+        <!-- Ad Container -->
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-full md:max-w-96 md:mx-4 bg-white rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-xl z-50 max-h-[80vh]" id="adContainer">
+            <!-- Close Button (Top Right) -->
+            <button onclick="closeScholarshipBanner()" class="absolute top-3 right-3 z-10 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center transition-all" title="Close ad">
+                <iconify-icon icon="lucide:x" width="20" stroke-width="2.5"></iconify-icon>
+            </button>
+
+            <!-- Ad Label (Top Left) -->
+            <div class="absolute top-3 left-3 text-xs font-semibold text-gray-500 bg-white px-2 py-1 rounded">
+                Ad
+            </div>
+
+            <!-- Banner Image (Top) -->
+            <div class="relative w-full bg-gradient-to-r from-blue-900 to-blue-700 flex items-center justify-center min-h-40 md:min-h-48">
+                <img src="banner.jpeg" alt="Scholarship Test" class="h-40 md:h-48 object-contain">
+            </div>
+
+            <!-- Content Section -->
+            <div class="p-4 md:p-5 bg-white">
+                <!-- Headline -->
+                <h3 class="text-base md:text-lg font-bold text-blue-900 mb-2 line-clamp-2">Scholarship Test 2026</h3>
+                
+                <!-- Description -->
+                <p class="text-gray-700 text-xs md:text-sm mb-3 md:mb-4 leading-snug line-clamp-2">
+                    Limited seats available for our scholarship test. Apply now and showcase your potential!
+                </p>
+
+                <!-- CTA Button -->
+                <a href="SCHOLARSHIP_FORM_URL_HERE" target="_blank" class="w-full py-2 md:py-2.5 bg-blue-900 hover:bg-blue-800 text-white text-xs md:text-sm font-bold rounded-lg transition-all hover:shadow-lg flex items-center justify-center gap-2 mb-2 md:mb-3">
+                    <iconify-icon icon="lucide:award" width="16" class="md:w-18"></iconify-icon>
+                    <span>Register Now</span>
+                </a>
+
+                <!-- Skip Button -->
+                <button onclick="closeScholarshipBanner()" class="w-full py-1.5 md:py-2 text-gray-600 hover:text-gray-900 text-xs md:text-sm font-medium transition-colors hover:bg-gray-50 rounded-lg">
+                    Skip
+                </button>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="px-4 md:px-5 py-2 md:py-3 bg-gray-50 border-t border-gray-200">
+                <p class="text-xs text-gray-500 flex items-center gap-1">
+                    <iconify-icon icon="lucide:info" width="12" class="md:w-14"></iconify-icon>
+                    <span>By Enlight Coaching Centre</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 border-b border-blue-100/60">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -145,24 +197,6 @@
     </header>
 
     <main class="pt-16">
-        <!-- Scholarship Notification Banner -->
-        <div id="scholarshipBanner" class="scholarship-banner">
-            <div class="scholarship-content">
-                <div class="scholarship-header">
-                    <iconify-icon icon="lucide:award" width="24" style="color: #FFD700;"></iconify-icon>
-                    <h3 class="scholarship-title">Scholarship Test!</h3>
-                </div>
-                <div class="scholarship-badge">LIMITED TIME OFFER</div>
-                <p class="scholarship-description">Apply for our exclusive scholarship test and win up to 50% tuition discount. Eligible for all classes!</p>
-                <div class="scholarship-actions">
-                    <a href="#" id="scholarshipRegister" class="scholarship-register-btn">Register Now</a>
-                    <button id="scholarshipSkip" class="scholarship-skip-btn">
-                        <iconify-icon icon="lucide:x" width="18"></iconify-icon>
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <!-- Hero Section -->
         <section class="relative pt-20 pb-32 overflow-hidden bg-grid">
             <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
@@ -585,22 +619,40 @@
 
             const revealElements = document.querySelectorAll('.reveal');
             revealElements.forEach(el => observer.observe(el));
+        });
 
-            // Scholarship Banner Functionality
-            const scholarshipBanner = document.getElementById('scholarshipBanner');
-            const scholarshipSkipBtn = document.getElementById('scholarshipSkip');
-            const scholarshipRegisterBtn = document.getElementById('scholarshipRegister');
+        // Scholarship Banner Functions
+        function openScholarshipBanner() {
+            const banner = document.getElementById('scholarshipBanner');
+            if (banner) {
+                banner.classList.remove('hidden');
+                banner.classList.add('flex');
+                // Store that banner was shown
+                sessionStorage.setItem('scholarshipBannerShown', 'true');
+            }
+        }
 
-            // Skip button functionality
-            scholarshipSkipBtn.addEventListener('click', () => {
-                scholarshipBanner.classList.add('hide');
-                setTimeout(() => {
-                    scholarshipBanner.style.display = 'none';
-                }, 400); // Wait for animation to complete
-            });
+        function closeScholarshipBanner() {
+            const banner = document.getElementById('scholarshipBanner');
+            if (banner) {
+                banner.classList.add('hidden');
+                banner.classList.remove('flex');
+            }
+        }
 
-            // Banner will always appear on page load/refresh
-            // Register button will direct to Google Form (link to be updated)
+        // Show banner on page load if not already shown this session
+        window.addEventListener('load', function() {
+            // Delay showing banner by 2 seconds for better UX
+            setTimeout(function() {
+                openScholarshipBanner();
+            }, 2000);
+        });
+
+        // Allow closing banner with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeScholarshipBanner();
+            }
         });
     </script>
 
