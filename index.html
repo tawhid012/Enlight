@@ -144,6 +144,24 @@
     </header>
 
     <main class="pt-16">
+        <!-- Scholarship Notification Banner -->
+        <div id="scholarshipBanner" class="scholarship-banner">
+            <div class="scholarship-content">
+                <div class="scholarship-header">
+                    <iconify-icon icon="lucide:award" width="24" style="color: #FFD700;"></iconify-icon>
+                    <h3 class="scholarship-title">Scholarship Test!</h3>
+                </div>
+                <div class="scholarship-badge">LIMITED TIME OFFER</div>
+                <p class="scholarship-description">Apply for our exclusive scholarship test and win up to 50% tuition discount. Eligible for all classes!</p>
+                <div class="scholarship-actions">
+                    <a href="#" id="scholarshipRegister" class="scholarship-register-btn">Register Now</a>
+                    <button id="scholarshipSkip" class="scholarship-skip-btn">
+                        <iconify-icon icon="lucide:x" width="18"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Hero Section -->
         <section class="relative pt-20 pb-32 overflow-hidden bg-grid">
             <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
@@ -566,6 +584,22 @@
 
             const revealElements = document.querySelectorAll('.reveal');
             revealElements.forEach(el => observer.observe(el));
+
+            // Scholarship Banner Functionality
+            const scholarshipBanner = document.getElementById('scholarshipBanner');
+            const scholarshipSkipBtn = document.getElementById('scholarshipSkip');
+            const scholarshipRegisterBtn = document.getElementById('scholarshipRegister');
+
+            // Skip button functionality
+            scholarshipSkipBtn.addEventListener('click', () => {
+                scholarshipBanner.classList.add('hide');
+                setTimeout(() => {
+                    scholarshipBanner.style.display = 'none';
+                }, 400); // Wait for animation to complete
+            });
+
+            // Banner will always appear on page load/refresh
+            // Register button will direct to Google Form (link to be updated)
         });
     </script>
 
